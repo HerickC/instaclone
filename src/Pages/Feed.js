@@ -15,8 +15,6 @@ import LikeIcon from '../assets/like.png';
 import CommentIcon from '../assets/comment.png';
 import SendIcon from '../assets/send.png';
 
-require('dotenv/config');
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -85,7 +83,7 @@ export default class Feed extends Component {
   }
 
   registerToSocket = () => {
-    const socket = io(process.env.API_URL);
+    const socket = io('http://192.168.0.11:3333');
 
     socket.on('post', (newPost) => {
       this.setState({ feed: [newPost, ...this.state.feed] });
@@ -121,7 +119,7 @@ export default class Feed extends Component {
               </View>
               <Image
                 style={styles.feedImage}
-                source={{ uri: `${process.env.API_URL}/files/${item.image}` }}
+                source={{ uri: `http://192.168.0.11:3333/files/${item.image}` }}
               />
               <View style={styles.feedItemFooter}>
                 <View style={styles.actions}>
